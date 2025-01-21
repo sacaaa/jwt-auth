@@ -1,0 +1,20 @@
+<div class="fixed bottom-4 right-4 flex flex-col gap-3 z-50">
+    <div
+        *ngFor="let alert of alerts$ | async"
+        class="flex items-center justify-between px-4 py-3 rounded-lg shadow-md text-white"
+        [ngClass]="{
+            'bg-green-500': alert.type === 'success',
+            'bg-red-500': alert.type === 'error',
+            'bg-blue-500': alert.type === 'info',
+            'bg-yellow-500': alert.type === 'warning',
+        }"
+    >
+        <span class="text-sm font-medium">{{ alert.message }}</span>
+        <button
+            (click)="closeAlert(alert.id)"
+            class="ml-4 text-lg font-bold focus:outline-none hover:opacity-80"
+        >
+            ×
+        </button>
+    </div>
+</div>
